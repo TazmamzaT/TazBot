@@ -9,6 +9,7 @@ using System.Text.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using TazBot.Service.Messages;
+using Discord.WebSocket;
 
 namespace TazBot.Service.CommandModules
 {
@@ -17,6 +18,12 @@ namespace TazBot.Service.CommandModules
         public DadJokeService DadJokeService { get; set; }
 
         public GeneralService GeneralService { get; set; }
+
+        [Command("source")]
+        public Task SourceAsync()
+        {
+            return ReplyAsync("https://github.com/TazmamzaT/TazBot");
+        }
 
         [Command("help")]
         public Task HelpAsync()
@@ -31,9 +38,12 @@ namespace TazBot.Service.CommandModules
         public async Task JokeAsync() => await ReplyAsync(await DadJokeService.GetRandomDadJokeAsync());
 
         [Command("insult")]
-        public async Task InsultAsync()
+        public async Task InsultAsync(SocketUser user)
         {
-            await ReplyAsync(await GeneralService.GetInsult());
+
+            var insult = await GeneralService.GetInsult();
+
+            await ReplyAsync(user.Mention + ", " + char.ToLower(insult[0]) + insult.Substring(1));
         }
 
         [Command("spongebob-gif")]

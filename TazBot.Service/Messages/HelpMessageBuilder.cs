@@ -15,7 +15,7 @@ namespace TazBot.Service.Messages
             {
                 new(){ Name = "!taz", Value = "joke"},
                 new(){ Name = "!taz", Value = "thanks"},
-                new(){ Name = "!taz", Value = "insult"},
+                new(){ Name = "!taz", Value = "insult [@user]"},
                 new(){ Name = "!taz", Value = "spongebob-gif"},
                 new(){ Name = "!taz reddit", Value = "dailytop3 [subreddit]"},
                 new(){ Name = "!taz reddit", Value = "randomtop [subreddit]"},
