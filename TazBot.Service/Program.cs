@@ -16,7 +16,6 @@ namespace TazBot.Service
         static void Main(string[] args)
         {
             MainAsync(args).GetAwaiter().GetResult();
-            //test
         }
 
         private static async Task MainAsync(string[] args)
