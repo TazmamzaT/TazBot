@@ -80,15 +80,15 @@ namespace TazBot.Service.Services
 
             }
 
-            if (result.Error is CommandError.ObjectNotFound)
-            {
-                await context.Channel.SendMessageAsync("Debug for Taz: Either that's a bad username or you over generalized CommandError.ObjectNotFound");
-                return;
-            }
-
             // the command was successful, we don't care about this result, unless we want to log that a command succeeded.
             if (result.IsSuccess)
                 return;
+
+            if (result.Error is CommandError.ObjectNotFound)
+            {
+                await context.Channel.SendMessageAsync($"Not sure what you're referring to.");
+                return;
+            }
 
             // the command failed, let's notify the user that something happened.
             await context.Channel.SendMessageAsync($"Something wacky happened with me: {result}");
