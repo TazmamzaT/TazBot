@@ -84,14 +84,24 @@ namespace TazBot.Service.Services
             if (result.IsSuccess)
                 return;
 
-            if (result.Error is CommandError.ObjectNotFound)
-            {
-                await context.Channel.SendMessageAsync($"Not sure what you're referring to.");
-                return;
-            }
+
+            await context.Channel.SendMessageAsync(CommandHandle(result.Error, result));
 
             // the command failed, let's notify the user that something happened.
             await context.Channel.SendMessageAsync($"Something wacky happened with me: {result}");
         }
+
+        public static string CommandHandle(CommandError error, IResult result) => error switch
+        {
+            CommandError.UnknownCommand => "What the fuck is this command?",
+            CommandError.ParseFailed => "I'm not able to parse something.",
+            CommandError.BadArgCount => "The ammount of arguments I was given was bad.",
+            CommandError.ObjectNotFound => "I'm not able to parse something",
+            CommandError.MultipleMatches => "Taz is a moron and coded multiple methods for the same command.",
+            CommandError.UnmetPrecondition => "There's some precondition that wasn't met",
+            CommandError.Exception => $"Either Taz really messed up or seomthing is broke. Here's the exception I got: {result}",
+            CommandError.Unsuccessful => $"I was not successful.",
+            _ => $"Something really wacky happened with me: {result}",
+        };
     }
 }
