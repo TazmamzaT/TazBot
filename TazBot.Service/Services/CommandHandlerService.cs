@@ -44,7 +44,7 @@ namespace TazBot.Service.Services
         private async Task HandleCommandAsync(SocketMessage messageParam)
         {
             // Ignore system messages, or messages from other bots
-            if (!(messageParam is SocketUserMessage message)) return;
+            if (messageParam is not SocketUserMessage message) return;
             if (message.Source != MessageSource.User) return;
 
             // This value holds the offset where the prefix ends
@@ -86,12 +86,9 @@ namespace TazBot.Service.Services
 
 
             await context.Channel.SendMessageAsync(CommandHandle(result.Error, result));
-
-            // the command failed, let's notify the user that something happened.
-            await context.Channel.SendMessageAsync($"Something wacky happened with me: {result}");
         }
 
-        public static string CommandHandle(CommandError error, IResult result) => error switch
+        public static string CommandHandle(CommandError? error, IResult result) => error switch
         {
             CommandError.UnknownCommand => "What the fuck is this command?",
             CommandError.ParseFailed => "I'm not able to parse something.",
