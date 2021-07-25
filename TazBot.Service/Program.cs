@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 using TazBot.Service.Options;
 using Microsoft.Extensions.Configuration;
 using TazBot.Service.Services;
+using TazBot.Service.Interfaces;
 using System.Net.Http;
+using Discord;
 
 namespace TazBot.Service
 {
@@ -37,8 +39,8 @@ namespace TazBot.Service
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.AddHostedService<Bootstrapper>();
-                    services.AddSingleton<CommandHandlerService>();
                     services.AddSingleton<DiscordSocketClient>();
+                    services.AddSingleton<ICommandHandlerService, CommandHandlerService>();
                     services.AddSingleton<CommandService>();
                     services.AddSingleton<DadJokeService>();
                     services.AddSingleton<RedditService>();

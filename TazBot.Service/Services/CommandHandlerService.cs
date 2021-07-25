@@ -8,10 +8,11 @@ using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
 using TazBot.Service.CommandModules;
+using TazBot.Service.Interfaces;
 
 namespace TazBot.Service.Services
 {
-    public class CommandHandlerService
+    public class CommandHandlerService : ICommandHandlerService
     {
         private readonly DiscordSocketClient _client;
         private readonly CommandService _commands;
