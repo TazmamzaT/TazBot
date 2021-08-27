@@ -62,6 +62,12 @@ namespace TazBot.Service.CommandModules
             {
                 await ReplyAsync(await GeneralService.GetRandomGifByTag(tag));
             }
+
+            [Command("randomnsfwgif")]
+            public async Task RandomNSFWGIF()
+            {
+                await ReplyAsync(await GeneralService.GetRandomNSFWGifByTag());
+            }
         }
     }
 }

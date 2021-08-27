@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -15,6 +16,8 @@ namespace TazBot.Service.Services
 {
     public class GeneralService
     {
+        private const string KSOFT_BASE = "https://api.ksoft.si";
+
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly ILogger _logger;
         private readonly GiphyOptions _giphyOptions;
@@ -55,8 +58,23 @@ namespace TazBot.Service.Services
             return parse.data.embed_url;
         }
         
-        public async Task<string> GetRandomNSFWImageByTag(string tag)
+        public async Task<string> GetRandomNSFWGifByTag()
         {
+            var build = new UriBuilder(KSOFT_BASE + "/images/random-nsfw");
+            var host = _httpClientFactory.CreateClient();
+
+            var query = HttpUtility.ParseQueryString(build.Query);
+            query["gifs"] = "true";
+            build.Query = query.ToString();
+
+            host.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Authorization", _ksoftOptions.Apitoken);
+
+            var gonk = await host.GetAsync(build.ToString());
+
+            var paani = await gonk.Content.ReadAsStringAsync();
+
+            var parse = JsonSerializer.Deserialize<KsoftImageNSFW>(paani);
+
             return string.Empty;
         }
     }

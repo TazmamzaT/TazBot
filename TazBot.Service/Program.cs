@@ -25,7 +25,6 @@ namespace TazBot.Service
             var host = CreateHostBuilder(args).Build();
 
             await host.Services.GetRequiredService<CommandHandlerService>().InstallCommandsAsync();
-            await host.Services.GetRequiredService<GeneralService>().GetRandomGifByTag("sponge");
 
             await host.RunAsync();
         }
