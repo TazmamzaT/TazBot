@@ -64,6 +64,7 @@ namespace TazBot.Service
                     services.Configure<RedditOptions>(config.GetSection(RedditOptions.Reddit));
                     services.Configure<GoogleOptions>(config.GetSection(GoogleOptions.Google));
                     services.Configure<GiphyOptions>(config.GetSection(GiphyOptions.Giphy));
+                    services.Configure<KsoftOptions>(config.GetSection(KsoftOptions.Ksoft));
 
                     services.AddHttpClient();
                 });

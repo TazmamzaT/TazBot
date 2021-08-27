@@ -18,12 +18,14 @@ namespace TazBot.Service.Services
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly ILogger _logger;
         private readonly GiphyOptions _giphyOptions;
+        private readonly KsoftOptions _ksoftOptions;
 
-        public GeneralService(ILogger<GeneralService> logger, IHttpClientFactory httpClientFactory, IOptions<GiphyOptions> options)
+        public GeneralService(ILogger<GeneralService> logger, IHttpClientFactory httpClientFactory, IOptions<GiphyOptions> giphyoptions, IOptions<KsoftOptions> ksoftoptions)
         {
             _httpClientFactory = httpClientFactory;
             _logger = logger;
-            _giphyOptions = options.Value;
+            _giphyOptions = giphyoptions.Value;
+            _ksoftOptions = ksoftoptions.Value;
         }
 
         public async Task<string> GetInsult()
@@ -51,6 +53,11 @@ namespace TazBot.Service.Services
             var parse = JsonSerializer.Deserialize<Giphy>(paani);
 
             return parse.data.embed_url;
+        }
+        
+        public async Task<string> GetRandomNSFWImageByTag(string tag)
+        {
+            return string.Empty;
         }
     }
 }
