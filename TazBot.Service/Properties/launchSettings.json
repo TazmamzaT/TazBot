@@ -1,10 +1,13 @@
 {
   "profiles": {
-    "TazBot.Service": {
+    "Development": {
       "commandName": "Project",
       "environmentVariables": {
         "ENVIRONMENT": "Development"
       }
+    },
+    "Prod": {
+      "commandName": "Project"
     }
   }
 }

@@ -24,7 +24,7 @@ namespace TazBot.Service
         {
             var host = CreateHostBuilder(args).Build();
 
-            await host.Services.GetRequiredService<CommandHandlerService>().InstallCommandsAsync();
+            await host.Services.GetRequiredService<ICommandHandlerService>().InstallCommandsAsync();
 
             await host.RunAsync();
         }
