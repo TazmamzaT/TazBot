@@ -16,7 +16,7 @@ namespace TazBot.Service.Models
         public int upvotes { get; set; }
         public int downvotes { get; set; }
         public int comments { get; set; }
-        public int created_at { get; set; }
+        public double created_at { get; set; }
         public bool nsfw { get; set; }
         public string author { get; set; }
         public int awards { get; set; }

@@ -67,7 +67,7 @@ namespace TazBot.Service.Services
             query["gifs"] = "true";
             build.Query = query.ToString();
 
-            host.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Authorization", _ksoftOptions.Apitoken);
+            host.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _ksoftOptions.Apitoken);
 
             var gonk = await host.GetAsync(build.ToString());
 
@@ -75,7 +75,7 @@ namespace TazBot.Service.Services
 
             var parse = JsonSerializer.Deserialize<KsoftImageNSFW>(paani);
 
-            return string.Empty;
+            return parse.image_url;
         }
     }
 }
