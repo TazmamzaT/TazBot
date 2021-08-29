@@ -10,7 +10,6 @@ using TazBot.Service.Services;
 using TazBot.Service.Interfaces;
 using System.Net.Http;
 using Discord;
-using KSoftNet;
 
 namespace TazBot.Service
 {
@@ -47,7 +46,6 @@ namespace TazBot.Service
                     services.AddSingleton<GoogleService>();
                     services.AddSingleton<HttpClient>();
                     services.AddSingleton<GeneralService>();
-                    services.AddSingleton<KsoftService>();
 
                     var config = hostContext.Configuration;
 
