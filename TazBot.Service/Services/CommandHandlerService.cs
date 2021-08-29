@@ -14,6 +14,9 @@ namespace TazBot.Service.Services
 {
     public class CommandHandlerService : ICommandHandlerService
     {
+        // TODO: This is a configuration and probably belongs in some configuration thing
+        public const string COMMAND_PREFIX = "!taz";
+
         private readonly DiscordSocketClient _client;
         private readonly CommandService _commands;
         private readonly IServiceProvider _services;
@@ -29,11 +32,6 @@ namespace TazBot.Service.Services
             // Hook MessageReceived so we can process each message to see
             // if it qualifies as a command.
             _client.MessageReceived += HandleCommandAsync;
-
-            //_commands.AddModuleAsync<PublicModule>(_services);
-            //_commands.AddModuleAsync<RedditModule>(_services);
-            //_commands.AddModuleAsync<GoogleModule>(_services);
-            //_commands.AddModulesAsync(Assembly.GetEntryAssembly(), _services);
 
         }
 
@@ -54,7 +52,7 @@ namespace TazBot.Service.Services
             // (!message.HasCharPrefix('!', ref argPos))
             // for a more traditional command format like !help.
             //if (!message.HasMentionPrefix(_client.CurrentUser, ref argPos)) return;
-            if (!message.HasStringPrefix("!taz", ref argPos))
+            if (!message.HasStringPrefix(COMMAND_PREFIX, ref argPos))
             {
                 if (message.ToString().ToLower().Contains("taz")) await message.Channel.SendMessageAsync("Fuck you!");
                 return;
