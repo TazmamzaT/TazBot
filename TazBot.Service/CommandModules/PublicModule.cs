@@ -46,10 +46,9 @@ namespace TazBot.Service.CommandModules
         [Command("insult")]
         public async Task InsultAsync(SocketUser user)
         {
-
             var insult = await GeneralService.GetInsult();
 
-            await ReplyAsync(user.Mention + ", " + char.ToLower(insult[0]) + insult.Substring(1));
+            await ReplyAsync(user.Mention + ", " + (char.ToLower(insult[0]) + insult.Substring(1)).Replace("&amp;", "&"));
         }
 
         [Command("spongebob-gif")]
