@@ -20,7 +20,7 @@ namespace TazBot.Service.Messages
             GenerateHelpUsingReflection();
             Footer = new EmbedFooterBuilder()
             {
-                Text = "Make sure to use quotes (\"\") for multiple words in queries!"
+                Text = "Make sure to use quotes (\"\") for multiple words in queries!\nAlso remember subreddits are a single string."
             };
         }
 
