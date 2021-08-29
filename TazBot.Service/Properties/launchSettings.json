@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "Development": {
+    "Dev": {
       "commandName": "Project",
       "environmentVariables": {
         "ENVIRONMENT": "Development"
