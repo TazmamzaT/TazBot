@@ -18,6 +18,10 @@ namespace TazBot.Service.Messages
             Color = Discord.Color.Red;
 
             GenerateHelpUsingReflection();
+            Footer = new EmbedFooterBuilder()
+            {
+                Text = "Make sure to use Quotes (\"\") for multiple words in queries!"
+            };
         }
 
         private void GenerateHelpUsingReflection()
