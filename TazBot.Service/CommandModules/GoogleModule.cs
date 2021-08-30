@@ -17,5 +17,11 @@ namespace TazBot.Service.CommandModules
         {
             await ReplyAsync(GoogleService.ImageSearch(query));
         }
+
+        [Command("luckysearch")]
+        public async Task ImFeelingLucky(string query)
+        {
+            await ReplyAsync(GoogleService.LinkSearch(query));
+        }
     }
 }

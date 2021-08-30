@@ -30,5 +30,19 @@ namespace TazBot.Service.Services
 
             return link;
         }
+
+        public string LinkSearch(string query)
+        {
+            var customSearchService = new CustomsearchService(new BaseClientService.Initializer { ApiKey = _options.ApiKey });
+
+            var listRequest = customSearchService.Cse.List();
+            listRequest.Cx = _options.SearchEngineId;
+            listRequest.Q = query;
+            listRequest.SearchType = CseResource.ListRequest.SearchTypeEnum.SearchTypeUndefined;
+            listRequest.Safe = CseResource.ListRequest.SafeEnum.Off;
+            var link = listRequest.Execute().Items[0].Link;
+
+            return link;
+        }
     }
 }
