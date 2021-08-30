@@ -71,7 +71,7 @@ namespace TazBot.Service.Services
 
         private string AddTitle(Post post)
         {
-            return post.Title + "\n" + GetUriFromPost(post).ToString();
+            return "> " + post.Title + "\n" + GetUriFromPost(post).ToString();
         }
 
         private Uri GetUriFromPost(Post post)
