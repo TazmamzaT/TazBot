@@ -12,13 +12,13 @@ namespace TazBot.Service.CommandModules
     {
         public GoogleService GoogleService { get; set; }
         
-        [Command("luckyimage")]
+        [Command("image")]
         public async Task LuckyImage(string query)
         {
             await ReplyAsync(GoogleService.ImageSearch(query));
         }
 
-        [Command("luckysearch")]
+        [Command("search")]
         public async Task ImFeelingLucky(string query)
         {
             await ReplyAsync(GoogleService.LinkSearch(query));
