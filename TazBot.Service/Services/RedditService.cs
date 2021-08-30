@@ -12,6 +12,8 @@ namespace TazBot.Service.Services
 {
     public class RedditService
     {
+        private const string CANT_FIND_SUBREDDIT = "I don't think I can find the subreddit.";
+
         Random rnd = new Random();
 
         private RedditClient _client { get; set; }
@@ -27,24 +29,44 @@ namespace TazBot.Service.Services
         {
             var rand = rnd.Next(10);
 
-            var post = _client.Subreddit(subreddit).Posts.Top[rand];
+            try
+            {
+                var post = _client.Subreddit(subreddit).Posts.Top[rand];
+                var uri = GetUriFromPost(post);
 
-            var uri = GetUriFromPost(post);
-
-            return post.Title + "\n" + uri.ToString();
+                return post.Title + "\n" + uri.ToString();
+            }
+            catch (Reddit.Exceptions.RedditNotFoundException)
+            {
+                return CANT_FIND_SUBREDDIT;
+            }
+            
         }
 
         public string DailyTopPost(string subreddit, int number)
         {
-            var post = _client.Subreddit(subreddit).Posts.GetTop("day")[number];
-
-            return AddTitle(post);
+            try
+            {
+                var post = _client.Subreddit(subreddit).Posts.GetTop("day")[number];
+                return AddTitle(post);
+            }
+            catch (Reddit.Exceptions.RedditNotFoundException)
+            {
+                return CANT_FIND_SUBREDDIT;
+            }
         }
 
         public string RandomHot(string subreddit)
         {
-            var post = _client.Subreddit(subreddit).Posts.GetHot()[rnd.Next(10)];
-            return AddTitle(post);
+            try
+            {
+                var post = _client.Subreddit(subreddit).Posts.GetHot()[rnd.Next(10)];
+                return AddTitle(post);
+            }
+            catch (Reddit.Exceptions.RedditNotFoundException)
+            {
+                return CANT_FIND_SUBREDDIT;
+            }
         }
 
         private string AddTitle(Post post)
