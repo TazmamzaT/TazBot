@@ -1,8 +1,10 @@
 ﻿using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration.Json;
 using Microsoft.Extensions.Hosting;
 using System;
+using System.IO;
 using System.Threading.Tasks;
 using TazBot.Service.Options;
 using Microsoft.Extensions.Configuration;
@@ -33,6 +35,8 @@ namespace TazBot.Service
             Host.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration((hostContext, config) =>
                 {
+                    Console.WriteLine($"Running in {AppContext.BaseDirectory}");
+                    config.SetBasePath(AppContext.BaseDirectory);
                     config.AddJsonFile("secrets.json", false);
                 })
                 .ConfigureServices((hostContext, services) =>
