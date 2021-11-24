@@ -9,6 +9,7 @@ using Discord.Commands;
 using Discord.WebSocket;
 using TazBot.Service.CommandModules;
 using TazBot.Service.Interfaces;
+using FuzzySharp;
 
 namespace TazBot.Service.Services
 {
@@ -55,6 +56,10 @@ namespace TazBot.Service.Services
             if (!message.HasStringPrefix(COMMAND_PREFIX, ref argPos))
             {
                 if (message.ToString().ToLower().Contains("taz")) await message.Channel.SendMessageAsync("Fuck you!");
+                if (Fuzz.Ratio(message.ToString(), "The bot provides.") > 50)
+                {
+                    await message.Channel.SendMessageAsync("The bot provides.");
+                }
                 return;
             }
 

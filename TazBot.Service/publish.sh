@@ -1,4 +1,7 @@
 #!/bin/bash
+echo "Stopping the service"
+sudo systemctl stop TazBot.Service.service
+sleep 5
 
 echo "Publishing"
 dotnet publish -c Release  -r ubuntu-x64 --self-contained
