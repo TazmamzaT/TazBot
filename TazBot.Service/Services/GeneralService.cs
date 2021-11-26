@@ -77,5 +77,24 @@ namespace TazBot.Service.Services
 
             return parse.image_url;
         }
+
+        public async Task<string> GetRandomMeme()
+        {
+            var build = new UriBuilder(KSOFT_BASE + "/images/random-meme");
+            var host = _httpClientFactory.CreateClient();
+
+            var query = HttpUtility.ParseQueryString(build.Query);
+            build.Query = query.ToString();
+
+            host.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _ksoftOptions.Apitoken);
+
+            var gonk = await host.GetAsync(build.ToString());
+
+            var paani = await gonk.Content.ReadAsStringAsync();
+
+            var parse = JsonSerializer.Deserialize<KsoftImageNSFW>(paani);
+
+            return parse.image_url;
+        }
     }
 }

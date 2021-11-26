@@ -57,6 +57,12 @@ namespace TazBot.Service.CommandModules
             await ReplyAsync(await GeneralService.GetRandomGifByTag("spongebob"));
         }
 
+        [Command("randommeme")]
+        public async Task RandomMeme()
+        {
+            await ReplyAsync(await GeneralService.GetRandomMeme());
+        }
+
         [Group("gif")]
         public class Giphy : ModuleBase<SocketCommandContext>
         {
