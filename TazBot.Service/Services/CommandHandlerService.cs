@@ -58,7 +58,6 @@ namespace TazBot.Service.Services
                 if (message.ToString().ToLower().Contains("taz")) await message.Channel.SendMessageAsync("Fuck you!");
                 if (Fuzz.Ratio(message.ToString(), "The bot provides.") > 50)
                 {
-                    await message.Channel.SendMessageAsync("The bot provides.");
                     string provides = char.ToUpper(message.ToString()[0]) + message.ToString().Substring(1);
                     if (message.ToString().EndsWith('.'))
                     {
