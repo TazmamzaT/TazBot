@@ -30,6 +30,12 @@ namespace TazBot.Service.CommandModules
         {
             return ReplyAsync("https://c.tenor.com/eoiC7yT87qgAAAAC/idubbbz-im-gay.gif");
         }
+        
+         [Command("sendmemes")]
+        public Task ImGay()
+        {
+            return ReplyAsync("https://i.imgur.com/rwJNqHb.jpg");
+        }
 
         [Command("help")]
         public Task HelpAsync()
