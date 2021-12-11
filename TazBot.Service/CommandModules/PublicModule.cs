@@ -32,7 +32,7 @@ namespace TazBot.Service.CommandModules
         }
         
          [Command("sendmemes")]
-        public Task ImGay()
+        public Task ImGayBoogaloo()
         {
             return ReplyAsync("https://i.imgur.com/rwJNqHb.jpg");
         }
