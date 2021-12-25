@@ -35,13 +35,14 @@ namespace TazBot.Service.CommandModules
         [Command("sendmemes")]
         public Task ImGayBoogaloo()
         {
-            return ReplyAsync("https://tenor.com/view/merry-christmas-hendaq-samir-gif-15898491");
+            
+            return ReplyAsync("https://i.imgur.com/rwJNqHb.jpg");
         }
 
         [Command("merrychristmas")]
         public Task MerryChristmas()
         {
-            return ReplyAsync("https://i.imgur.com/rwJNqHb.jpg");
+            return ReplyAsync("https://tenor.com/view/merry-christmas-hendaq-samir-gif-15898491");
         }
 
         [Command("help")]
