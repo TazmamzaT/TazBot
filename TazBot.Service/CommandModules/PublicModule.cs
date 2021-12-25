@@ -31,8 +31,15 @@ namespace TazBot.Service.CommandModules
             return ReplyAsync("https://c.tenor.com/eoiC7yT87qgAAAAC/idubbbz-im-gay.gif");
         }
         
-         [Command("sendmemes")]
+
+        [Command("sendmemes")]
         public Task ImGayBoogaloo()
+        {
+            return ReplyAsync("https://tenor.com/view/merry-christmas-hendaq-samir-gif-15898491");
+        }
+
+        [Command("merrychristmas")]
+        public Task MerryChristmas()
         {
             return ReplyAsync("https://i.imgur.com/rwJNqHb.jpg");
         }
